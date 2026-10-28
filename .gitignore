@@ -1,0 +1,26 @@
+# dependencies / build output
+node_modules/
+.pnpm-store/
+dist/
+coverage/
+
+# local secrets — never commit
+.env
+.env.*
+*.local
+.credentials.yaml
+.credentials.yml
+
+# logs & scratch
+*.log
+*.tmp
+*.bak
+_tmp*
+._*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/

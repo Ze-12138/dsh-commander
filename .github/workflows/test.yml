@@ -1,0 +1,19 @@
+name: test
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: host-half tests (protocol, tools, catalog route)
+        run: node dsh-commander/test/brief.test.cjs
+      - name: browser bundle stub tests
+        run: node dsh-commander/test/client.test.cjs

@@ -1,0 +1,48 @@
+# Commander layer bundle patch: mounts the commander plugin into the host
+# composition of a dsh profile. The plugin registers one system-prompt section
+# (the commander protocol) and two model-facing tools (`commander_brief`,
+# `commander_roster`).
+#
+# Install (Web GUI): 插件页 → 添加插件 → paste this package's absolute path
+# Install (CLI):     dsh plugin --profile <name> add <this package's path>
+#
+# The plugin does NOT replace AgentTeams: it rides on the `agent_teams_*` tools
+# that @nanmicoder/dsh-agent-teams registers.
+- insert:
+    - id: commander
+      # Node-resolvable package name — must stay in sync with package.json name.
+      name: 'dsh-commander'
+      config:
+        # Lead model must show a decision brief to the human this often. A
+        # member report, a finished task, or a blocker is one trigger event.
+        reportEvery: 2
+        # When true, the lead may never start an execution phase without an
+        # explicit human direction; when false it may proceed but must still
+        # summarize each phase.
+        requireDirection: true
+        # Keep each member report in the brief under this many characters.
+        maxReportChars: 1200
+        # The human's model roster: the single source of truth for "which role
+        # runs on which model". Edit this in the profile patch; the commander
+        # protocol prints it and `commander_roster` returns it verbatim, so the
+        # lead never has to guess a model id.
+        # Fields: name, role, provider, model, reasoning_effort (optional), brief (optional)
+        roster:
+          - name: architect
+            role: 方案设计
+            provider: deepseek-official
+            model: deepseek-v4-pro
+            brief: 负责拆解、架构与验收标准，输出可执行的方案
+          - name: implementer
+            role: 编码实现
+            provider: deepseek-official
+            model: deepseek-flash
+            reasoning_effort: max
+            brief: 按方案实现，跑通验证命令后再汇报
+          - name: reviewer
+            role: 审查复核
+            provider: deepseek-official
+            model: deepseek-flash
+            brief: 挑毛病、验证据，不重写别人的实现
+        # Extra guidance appended to the commander protocol section.
+        protocol: ''

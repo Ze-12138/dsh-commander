@@ -1,0 +1,43 @@
+{
+  "name": "dsh-commander",
+  "version": "0.5.1",
+  "description": "Commander layer for DeepSeek Harness AgentTeams: the lead model plans and delegates, members run on heterogeneous models, members report periodically, the commander submits decision briefs to the human, and a composer control composes team rosters.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "agent-teams",
+    "commander",
+    "multi-agent"
+  ],
+  "engines": {
+    "dsh": ">=0.2.1-rc.2"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "scripts": {
+    "test": "node test/brief.test.cjs"
+  }
+}

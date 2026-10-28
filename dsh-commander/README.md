@@ -19,9 +19,17 @@
 
 ## 安装
 
+### 先决条件
+
+```sh
+git clone https://github.com/ZE875/dsh-commander.git
+```
+
+或直接下载仓库压缩包解压。下文用 `<本机路径>/dsh-commander` 指代 `dsh-commander` 子目录的绝对路径。
+
 ### 方式 A：Web GUI（推荐）
 
-在 DSH 的 **插件** 页 → **添加插件**，粘贴本仓库 `dsh-commander` 目录的**绝对路径**（你 clone/解压到哪里就填哪里）：
+在 DSH 的 **插件** 页 → **添加插件**，粘贴 `dsh-commander` 目录的**绝对路径**（你 clone/解压到哪里就填哪里）：
 
 ```
 <本机路径>/dsh-commander
@@ -39,7 +47,7 @@ dsh plugin --profile desktop add <本机路径>/dsh-commander
 
 ### 依赖
 
-必须先有 `@nanmicoder/dsh-agent-teams`（本机已安装）。本插件**零运行时依赖**：不 import 任何包，只读团队状态文件，因此不会被 profile 的模块解析顺序影响。
+必须先安装 `@nanmicoder/dsh-agent-teams`。本插件**零运行时依赖**：不 import 任何包，只读团队状态文件，因此不会被 profile 的模块解析顺序影响。
 
 ## 配置：模型名册（你的核心控制点）
 

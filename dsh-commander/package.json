@@ -16,6 +16,14 @@
     "README.md"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZE875/dsh-commander.git"
+  },
+  "homepage": "https://github.com/ZE875/dsh-commander#readme",
+  "bugs": {
+    "url": "https://github.com/ZE875/dsh-commander/issues"
+  },
   "keywords": [
     "dsh",
     "dsh-plugin",
